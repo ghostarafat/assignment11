@@ -105,7 +105,7 @@ const AppliedTutors = () => {
             className="text-lg sm:text-base"
             style={{ color: "var(--color-text-muted)" }}
           >
-            Manage tutor applications for your tuition requests
+            Manage applications from tutors for your tuition requests
           </p>
         </div>
 
