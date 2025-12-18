@@ -31,28 +31,30 @@ function Register() {
   // console.log(user);
 
   const onSubmit = async (data) => {
-    const { name, image, email, role, password } = data;
-    const imageFile = image[0];
-
     setIsLoading(true);
+
     try {
+      const { name, image, email, role, password } = data;
+      const imageFile = image[0];
+
+      console.log("Submitting...", data);
+
       const photoURL = await imageUpload(imageFile);
-      const result = await createUserFunc(email, password);
+      await createUserFunc(email, password);
       await updateUserProfileFunc(name, photoURL);
 
-      axios.post(`${import.meta.env.VITE_API_URL}/users`, {
+      await axios.post(`${import.meta.env.VITE_API_URL}/users`, {
         name,
         image: photoURL,
         email,
         role,
       });
 
-      navigate(from, { replace: true });
       toast.success("Signup Successfully");
-      // console.log(result);
+      navigate(from, { replace: true });
     } catch (err) {
-      // console.log(err);
-      toast.error(err?.message);
+      console.error("Signup error:", err);
+      toast.error(err?.message || "Signup failed");
     } finally {
       setIsLoading(false);
     }
@@ -88,7 +90,7 @@ function Register() {
             borderColor: "var(--color-border)",
           }}
         >
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+          <form onSubmit={handleSubmit} className="space-y-5">
             {/* Role Selection - Simple */}
             <div>
               <label
