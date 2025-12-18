@@ -45,9 +45,7 @@ const UserManagement = () => {
   if (isLoading) return <Spinner></Spinner>;
 
   if (error) {
-    return (
-     <Error/>
-    );
+    return <Error />;
   }
 
   // Format date
@@ -80,7 +78,7 @@ const UserManagement = () => {
       refetch();
     } catch (error) {
       console.error("Error deleting user:", error);
-      toast.error("Failed to delete user. Please try again.");
+      toast.error("Failed to remove user. Please try once more.");
     }
   };
 
