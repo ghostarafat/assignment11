@@ -113,8 +113,8 @@ const Tutor = () => {
                 className="text-lg"
                 style={{ color: "var(--color-text-muted)" }}
               >
-                No tutors are currently registered. Check back later to see
-                available tutors.
+                No tutors are currently registered. Please Check back later to
+                see available tutors.
               </p>
             </div>
           </div>
