@@ -208,7 +208,7 @@ const TutorDetails = () => {
                 style={{ color: "var(--color-text-muted)" }}
               >
                 {tutor.bio ||
-                  "This tutor hasn't added a bio yet. Contact them directly to learn more about their teaching experience and approach."}
+                  "This tutor hasn’t shared a bio yet. Reach out to them directly to know more about their experience and teaching style."}
               </p>
             </div>
 
