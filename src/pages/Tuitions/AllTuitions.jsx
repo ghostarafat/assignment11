@@ -385,7 +385,7 @@ const AllTuitions = () => {
                     <option value="Sylhet">Sylhet</option>
                     <option value="Rajshahi">Rajshahi</option>
                     <option value="Khulna">Khulna</option>
-                    <option value="Barisal">Barisal</option>
+                    <option value="Barisal">Barishal</option>
                     <option value="Rangpur">Rangpur</option>
                     <option value="Mymensingh">Mymensingh</option>
                   </select>
