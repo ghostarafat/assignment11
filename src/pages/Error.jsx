@@ -7,7 +7,7 @@ const Error = () => {
       <div className="max-w-lg w-full text-center bg-white rounded-2xl shadow-xl p-8 md:p-12">
         {/* 404 Number */}
         <div className="mb-8">
-          <h1 className="text-8xl md:text-9xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-orange-600 mb-4">
+          <h1 className="text-8xl md:text-9xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-orange-500 mb-4">
             404
           </h1>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-orange-500 mx-auto rounded-full"></div>
@@ -28,7 +28,7 @@ const Error = () => {
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
             to="/"
-            className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-blue-500 to-orange-600 text-white font-semibold rounded-xl hover:from-blue-600 hover:to-purple-700 transition-colors duration-200 shadow-lg"
+            className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-blue-500 to-orange-500 text-white font-semibold rounded-xl hover:from-blue-600 hover:to-purple-700 transition-colors duration-200 shadow-lg"
           >
             <FaHome className="mr-2 text-lg" />
             Back to Home
