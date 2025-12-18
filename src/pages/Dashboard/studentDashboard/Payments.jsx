@@ -35,9 +35,7 @@ const Payments = () => {
   }
 
   if (error) {
-    return (
-      <Error/>
-    );
+    return <Error />;
   }
 
   // Format date
@@ -62,7 +60,7 @@ const Payments = () => {
             className="text-sm sm:text-base"
             style={{ color: "var(--color-text-muted)" }}
           >
-            View all your tuition payment transactions
+            See all your tuition payment transactions
           </p>
         </div>
 
