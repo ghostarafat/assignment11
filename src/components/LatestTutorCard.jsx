@@ -5,7 +5,7 @@ const LatestTutorCard = ({ tutor }) => {
   return (
     <Link
       to={`/tutors/${tutor._id}`}
-      className="group w-full max-w-sm mx-auto overflow-hidden shadow-2xl rounded-3xl relative h-80 flex flex-col transition-all duration-300 hover:shadow-3xl hover:scale-105"
+      className="group w-full max-w-sm mx-auto overflow-hidden shadow-2xl rounded-2xl relative h-80 flex flex-col transition-all duration-300 hover:shadow-3xl hover:scale-105"
       style={{
         background:
           "linear-gradient(135deg, var(--color-primary-hover) 0%, var(--color-card-bg) 100%)",
