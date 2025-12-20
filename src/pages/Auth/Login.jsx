@@ -20,44 +20,42 @@ function Login() {
     formState: { errors },
   } = useForm();
 
-  // ROLE BASED REDIRECt
-  const redirectBasedOnRole = async (user) => {
+  // ---------------- JWT + Role ----------------
+  const getJWTAndRole = async (firebaseUser) => {
     try {
-      const token = await user.getIdToken();
-
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/user/role`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/jwt`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: firebaseUser.email }),
       });
 
-      if (!res.ok) {
-        throw new Error("Failed to fetch role");
-      }
+      if (!res.ok) throw new Error("Failed to fetch JWT");
+      const { token } = await res.json();
+      localStorage.setItem("eduPlusToken", token);
 
-      const data = await res.json();
+      const roleRes = await fetch(`${import.meta.env.VITE_API_URL}/user/role`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
 
-      if (data.role === "admin") {
-        navigate("/admin-dashboard", { replace: true });
-      } else if (data.role === "teacher") {
-        navigate("/teacher-dashboard", { replace: true });
-      } else {
-        navigate("/student-dashboard", { replace: true });
-      }
+      if (!roleRes.ok) throw new Error("Failed to fetch role");
+      const { role } = await roleRes.json();
+      return role;
     } catch (err) {
-      console.error("Role fetch error:", err);
-      toast.error("Failed to get user role");
-      navigate(from, { replace: true });
+      console.error("JWT/Role error:", err);
+      toast.error("Login failed");
+      return null;
     }
   };
 
-  //  EMAIL / PASSWORD LOGIN
   const onSubmit = (data) => {
     setIsLoading(true);
     signInFunc(data.email, data.password)
       .then(async (userCredential) => {
         toast.success("Login Successful");
-        await redirectBasedOnRole(userCredential.user);
+        const role = await getJWTAndRole(userCredential.user);
+        if (role === "admin") navigate("/dashboard/user-management");
+        else if (role === "tutor") navigate("/dashboard/active-tuitions");
+        else navigate("/dashboard/my-tuitions");
       })
       .catch((err) => {
         console.error(err);
@@ -66,13 +64,15 @@ function Login() {
       .finally(() => setIsLoading(false));
   };
 
-  // GOOGLE LOGIN
   const handleGoogle = () => {
     setIsLoading(true);
     signInWithGoogleFunc()
       .then(async (userCredential) => {
         toast.success("Google Login Successful");
-        await redirectBasedOnRole(userCredential.user);
+        const role = await getJWTAndRole(userCredential.user);
+        if (role === "admin") navigate("/dashboard/user-management");
+        else if (role === "tutor") navigate("/dashboard/active-tuitions");
+        else navigate("/dashboard/my-tuitions");
       })
       .catch((err) => {
         console.error(err);
