@@ -1,11 +1,31 @@
 import { FiBookOpen, FiUsers } from "react-icons/fi";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const Call = () => {
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut",
+      },
+    },
+  };
+
   return (
-    <div>
+    <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
+    >
       {/* Call to Action */}
-      <div
+      <motion.div
+        whileHover={{ scale: 1.02 }}
         className="rounded-xl shadow-lg p-8 mt-12 text-center border"
         style={{
           background:
@@ -36,8 +56,8 @@ const Call = () => {
             Join as Tutor
           </Link>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 

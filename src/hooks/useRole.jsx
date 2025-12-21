@@ -1,25 +1,25 @@
-import useAuth from "./useAuth";
-import useAxiosSecure from "./useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import useAuth from "./useAuth";
+
 const useRole = () => {
   const { user, loading } = useAuth();
-  const axiosSecure = useAxiosSecure();
+  const token = user?.accessToken; // firebase token
 
-  const { data: role, isLoading: isRoleLoading } = useQuery({
-    enabled: !loading && !!user?.email,
-    queryKey: ["role", user?.email],
+  return useQuery({
+    queryKey: ["userRole", user?.email],
     queryFn: async () => {
-      try {
-        const result = await axiosSecure(`/user/role?email=${user.email}`);
-        return result.data?.role || null;
-      } catch (error) {
-        console.error("Error fetching role:", error);
-        return null;
-      }
+      if (!user?.email) return null;
+      const response = await axios.get(
+        `https://edu-plus-server-alpha.vercel.app/user/role?email=${user.email}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      return response.data.role;
     },
+    enabled: !!user && !loading,
   });
-
-  return [role, isRoleLoading];
 };
 
 export default useRole;

@@ -2,7 +2,8 @@ import React from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { Pagination, Autoplay, Navigation } from "swiper/modules";
-import { Link } from "react-router";
+
+import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 // Swiper styles
 import "swiper/css";
@@ -118,7 +119,7 @@ const LatestTutor = () => {
       </Container>
 
       {/* Custom Swiper Styles */}
-      <style jsx>{`
+      <style>{`
         .latest-tuitions-swiper .swiper-pagination {
           bottom: 0 !important;
         }

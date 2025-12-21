@@ -117,7 +117,7 @@ const LatestTuition = () => {
       </Container>
 
       {/* Custom Swiper Styles */}
-      <style jsx>{`
+      <style>{`
         .latest-tuitions-swiper .swiper-pagination {
           bottom: 0 !important;
         }

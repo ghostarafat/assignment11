@@ -8,7 +8,9 @@ import ThemeToggle from "./ThemeToggle";
 import { FaGraduationCap } from "react-icons/fa";
 
 function Navbar() {
-  const { user, loading, logOutFunc } = useContext(AuthContext);
+  const auth = useContext(AuthContext) || {};
+  const { user, loading, logOutFunc } = auth;
+
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 

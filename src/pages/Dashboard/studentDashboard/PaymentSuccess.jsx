@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { useSearchParams, Link } from "react-router";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import { 
-  FaCheckCircle, 
-  FaHome, 
-  FaReceipt, 
-  FaCalendarAlt, 
+import {
+  FaCheckCircle,
+  FaHome,
+  FaReceipt,
+  FaCalendarAlt,
   FaCreditCard,
   FaDownload,
-  FaShare
+  FaShare,
 } from "react-icons/fa";
 import GradientButton from "../../../components/Shared/GradientButton";
 import Container from "../../../components/Shared/Container";
@@ -21,25 +21,27 @@ const PaymentSuccess = () => {
 
   useEffect(() => {
     if (sessionId) {
-      axiosSecure.post(`/payment-success`, {
-        sessionId,
-      }).then(response => {
-        // Assuming the API returns payment details
-        setPaymentDetails(response.data);
-      }).catch(error => {
-        console.error("Payment verification error:", error);
-      });
+      axiosSecure
+        .post(`/payment-success`, {
+          sessionId,
+        })
+        .then((response) => {
+          // Assuming the API returns payment details
+          setPaymentDetails(response.data);
+        })
+        .catch((error) => {
+          console.error("Payment verification error:", error);
+        });
     }
   }, [sessionId, axiosSecure]);
 
-  const currentDate = new Date().toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit'
+  const currentDate = new Date().toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
   });
-
 
   return (
     <Container className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-purple-50 py-8 px-4">
@@ -53,8 +55,8 @@ const PaymentSuccess = () => {
             Payment Successful!
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Thank you for your payment. Your transaction has been processed successfully 
-            and you will receive a confirmation email shortly.
+            Thank you for your payment. Your transaction has been processed
+            successfully and you will receive a confirmation email shortly.
           </p>
         </div>
 
@@ -124,7 +126,6 @@ const PaymentSuccess = () => {
                         <span className="text-gray-600">Duration:</span>
                         <span className="font-medium">1 Month</span>
                       </div>
-                     
                     </div>
                   </div>
                 </div>
@@ -134,16 +135,8 @@ const PaymentSuccess = () => {
         </div>
 
         {/* Action Buttons */}
-        <div className="my-5 flex justify-center items-center" >
-          <GradientButton
-            to="/dashboard"
-            
-          >
-           
-            Back to Dashboard
-          </GradientButton>
-          
-          
+        <div className="my-5 flex justify-center items-center">
+          <GradientButton to="/dashboard">Back to Dashboard</GradientButton>
         </div>
 
         {/* Next Steps */}
@@ -156,27 +149,33 @@ const PaymentSuccess = () => {
               <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-2xl font-bold text-blue-600">1</span>
               </div>
-              <h4 className="font-semibold text-gray-800 mb-2">Confirmation Email</h4>
+              <h4 className="font-semibold text-gray-800 mb-2">
+                Confirmation Email
+              </h4>
               <p className="text-gray-600 text-sm">
                 You'll receive a detailed confirmation email within 5 minutes
               </p>
             </div>
-            
+
             <div className="text-center p-6 bg-green-50 rounded-xl">
               <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-2xl font-bold text-green-600">2</span>
               </div>
-              <h4 className="font-semibold text-gray-800 mb-2">Tutor Contact</h4>
+              <h4 className="font-semibold text-gray-800 mb-2">
+                Tutor Contact
+              </h4>
               <p className="text-gray-600 text-sm">
                 Your assigned tutor will contact you within 24 hours
               </p>
             </div>
-            
+
             <div className="text-center p-6 bg-purple-50 rounded-xl">
               <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-2xl font-bold text-purple-600">3</span>
               </div>
-              <h4 className="font-semibold text-gray-800 mb-2">Start Learning</h4>
+              <h4 className="font-semibold text-gray-800 mb-2">
+                Start Learning
+              </h4>
               <p className="text-gray-600 text-sm">
                 Begin your personalized learning journey immediately
               </p>
@@ -188,18 +187,19 @@ const PaymentSuccess = () => {
         <div className="text-center mt-8 p-6 bg-gray-50 rounded-xl">
           <h4 className="font-semibold text-gray-800 mb-2">Need Help?</h4>
           <p className="text-gray-600 mb-4">
-            If you have any questions about your payment or booking, we're here to help.
+            If you have any questions about your payment or booking, we're here
+            to help.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a 
-              href="mailto:support@eduplus.com" 
+            <a
+              href="mailto:support@eduplus.com"
               className="text-blue-600 hover:text-blue-800 font-medium"
             >
               support@eduplus.com
             </a>
             <span className="hidden sm:inline text-gray-400">|</span>
-            <a 
-              href="tel:+1234567890" 
+            <a
+              href="tel:+1234567890"
               className="text-blue-600 hover:text-blue-800 font-medium"
             >
               +1 (234) 567-8900

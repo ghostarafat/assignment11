@@ -1,4 +1,4 @@
-// import { StrictMode } from "react";
+// src/main.jsx
 import { createRoot } from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
@@ -11,37 +11,35 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")).render(
-  <div>
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider>
-        <AuthProvider>
-          <RouterProvider router={router} />
-          <Toaster
-            position="top-right"
-            toastOptions={{
+  <QueryClientProvider client={queryClient}>
+    <ThemeProvider>
+      <AuthProvider>
+        <RouterProvider router={router} />
+        <Toaster
+          position="top-right"
+          toastOptions={{
+            duration: 3000,
+            style: {
+              background: "#363636",
+              color: "#fff",
+            },
+            success: {
               duration: 3000,
-              style: {
-                background: "#363636",
-                color: "#fff",
+              iconTheme: {
+                primary: "#4ade80",
+                secondary: "#fff",
               },
-              success: {
-                duration: 3000,
-                iconTheme: {
-                  primary: "#4ade80",
-                  secondary: "#fff",
-                },
+            },
+            error: {
+              duration: 4000,
+              iconTheme: {
+                primary: "#ef4444",
+                secondary: "#fff",
               },
-              error: {
-                duration: 4000,
-                iconTheme: {
-                  primary: "#ef4444",
-                  secondary: "#fff",
-                },
-              },
-            }}
-          />
-        </AuthProvider>
-      </ThemeProvider>
-    </QueryClientProvider>
-  </div>
+            },
+          }}
+        />
+      </AuthProvider>
+    </ThemeProvider>
+  </QueryClientProvider>
 );
