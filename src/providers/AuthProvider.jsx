@@ -1,70 +1,62 @@
-import { useEffect, useState, createContext } from "react";
-
+import React, { useEffect, useState } from "react";
+import { AuthContext } from "./AuthContext";
 import {
-  GoogleAuthProvider,
   createUserWithEmailAndPassword,
+  GoogleAuthProvider,
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
   updateProfile,
 } from "firebase/auth";
-
 import { auth } from "../../firebase.config";
 
-export const AuthContext = createContext();
-
-const googleProvider = new GoogleAuthProvider();
+const googleprovider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const createUserFunc = (email, password) => {
+  const registerUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
-  const signInFunc = (email, password) => {
+  const signInuser = (email, password) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  const signInWithGoogleFunc = () => {
+  const signInGoogle = () => {
     setLoading(true);
-    return signInWithPopup(auth, googleProvider);
+    return signInWithPopup(auth, googleprovider);
   };
 
-  const logOutFunc = async () => {
+  const logOut = () => {
     setLoading(true);
     return signOut(auth);
   };
 
-  const updateUserProfileFunc = (name, photo) => {
-    return updateProfile(auth.currentUser, {
-      displayName: name,
-      photoURL: photo,
-    });
+  const updateUserProfile = (profile) => {
+    return updateProfile(auth.currentUser, profile);
   };
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+    const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       setLoading(false);
     });
-    return () => unsubscribe();
+    return () => unSubscribe();
   }, []);
 
   const authInfo = {
     user,
-    setUser,
     loading,
-    setLoading,
-    createUserFunc,
-    signInFunc,
-    signInWithGoogleFunc,
-    logOutFunc,
-    updateUserProfileFunc,
+    registerUser,
+    signInuser,
+    signInGoogle,
+    logOut,
+    updateUserProfile,
   };
 
   return (

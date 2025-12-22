@@ -1,14 +1,24 @@
 import toast from "react-hot-toast";
 import useAuth from "../../../hooks/useAuth";
 import useRole from "../../../hooks/useRole";
-import { FiMail, FiUser, FiShield, FiCalendar, FiEdit2, FiSave, FiX, FiCamera } from "react-icons/fi";
+import {
+  FiMail,
+  FiUser,
+  FiShield,
+  FiCalendar,
+  FiEdit2,
+  FiSave,
+  FiX,
+  FiCamera,
+} from "react-icons/fi";
 import GradientHeading from "../../../components/Shared/GradientHeading";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 const Profile = () => {
   const { user, updateUserProfileFunc, setUser } = useAuth();
-  const [role] = useRole();
+  const { role } = useRole();
+
   const [isEditing, setIsEditing] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -42,7 +52,7 @@ const Profile = () => {
     try {
       // Update Firebase profile
       await updateUserProfileFunc(data.displayName, data.photoURL);
-      
+
       // Update local user state
       setUser({
         ...user,
@@ -89,9 +99,12 @@ const Profile = () => {
                 <div className="relative">
                   <div className="avatar online">
                     <div className="w-32 h-32 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                      <img 
-                        src={user?.photoURL || "https://via.placeholder.com/150/4F46E5/FFFFFF?text=User"} 
-                        alt={user?.displayName || "User"} 
+                      <img
+                        src={
+                          user?.photoURL ||
+                          "https://via.placeholder.com/150/4F46E5/FFFFFF?text=User"
+                        }
+                        alt={user?.displayName || "User"}
                         className="object-cover"
                       />
                     </div>
@@ -238,7 +251,10 @@ const Profile = () => {
                           </div>
                         </div>
                       ) : (
-                        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                        <form
+                          onSubmit={handleSubmit(onSubmit)}
+                          className="space-y-6"
+                        >
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             {/* Full Name Input */}
                             <div className="md:col-span-2">
@@ -251,11 +267,13 @@ const Profile = () => {
                                   required: "Full name is required",
                                   minLength: {
                                     value: 2,
-                                    message: "Name must be at least 2 characters",
+                                    message:
+                                      "Name must be at least 2 characters",
                                   },
                                   maxLength: {
                                     value: 50,
-                                    message: "Name must be less than 50 characters",
+                                    message:
+                                      "Name must be less than 50 characters",
                                   },
                                 })}
                                 className={`input input-bordered w-full ${
@@ -279,8 +297,10 @@ const Profile = () => {
                                 type="url"
                                 {...register("photoURL", {
                                   pattern: {
-                                    value: /^https?:\/\/.+\.(jpg|jpeg|png|gif|webp)$/i,
-                                    message: "Please enter a valid image URL (jpg, jpeg, png, gif, webp)",
+                                    value:
+                                      /^https?:\/\/.+\.(jpg|jpeg|png|gif|webp)$/i,
+                                    message:
+                                      "Please enter a valid image URL (jpg, jpeg, png, gif, webp)",
                                   },
                                 })}
                                 className={`input input-bordered w-full ${

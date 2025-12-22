@@ -3,10 +3,11 @@ import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash, FaEnvelope, FaLock } from "react-icons/fa";
 import toast from "react-hot-toast";
-import { AuthContext } from "../../providers/AuthContext";
+import useAuth from "../../hooks/useAuth";
 
 function Login() {
-  const { signInFunc, signInWithGoogleFunc } = useContext(AuthContext);
+  const { signInFunc, signInWithGoogleFunc } = useAuth();
+
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 

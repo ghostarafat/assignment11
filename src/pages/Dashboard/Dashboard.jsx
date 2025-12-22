@@ -6,7 +6,7 @@ import useAuth from "../../hooks/useAuth";
 
 const Dashboard = () => {
   const { user, loading: authLoading } = useAuth();
-  const { data: role, isLoading: roleLoading, error } = useRole();
+  const { role, isLoading: roleLoading, error } = useRole();
 
   if (authLoading || roleLoading) return <div>Loading...</div>;
   if (error) return <div>Error loading role: {error.message}</div>;

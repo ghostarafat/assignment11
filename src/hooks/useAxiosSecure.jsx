@@ -4,7 +4,7 @@ import axios from "axios";
 import useAuth from "./useAuth";
 
 const axiosInstance = axios.create({
-  baseURL: "https://edu-plus-server-alpha.vercel.app/",
+  baseURL: "http://localhost:3000/",
 });
 // console.log("API URL:", import.meta.env.VITE_API_URL);
 

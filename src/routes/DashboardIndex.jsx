@@ -4,18 +4,18 @@ import useRole from "../hooks/useRole";
 
 const DashboardIndex = () => {
   const navigate = useNavigate();
-  const [role, isRoleLoading] = useRole();
+  const { role, isLoading: isRoleLoading } = useRole(); //  object destructuring
 
   useEffect(() => {
-    if (isRoleLoading) return;
+    if (isRoleLoading) return; // wait for role fetch
+    if (!role) return; // no role found
 
-    if (!role) return;
     if (role === "student") navigate("my-tuitions", { replace: true });
     else if (role === "tutor") navigate("active-tuitions", { replace: true });
     else if (role === "admin") navigate("user-management", { replace: true });
   }, [role, isRoleLoading, navigate]);
 
-  return null;
+  return null; // nothing to render
 };
 
 export default DashboardIndex;

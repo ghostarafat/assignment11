@@ -27,9 +27,12 @@ const DashboardLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
-  const [role, isRoleLoading] = useRole();
+  const token = localStorage.getItem("eduPlusToken");
 
-  if (isRoleLoading || userLoading) return <Spinner />;
+  const { role, isLoading: roleLoading } = useRole();
+
+  if (userLoading || roleLoading) return <Spinner />;
+
   return (
     <div
       className="flex h-screen"
