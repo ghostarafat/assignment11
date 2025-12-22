@@ -45,7 +45,7 @@ function Navbar() {
         <MyLink path="/">Home</MyLink>
       </li>
       <li onClick={closeMenu}>
-        <MyLink path="/all-tuitions">Tuitions</MyLink>
+        <MyLink path="/all-tutions">tutions</MyLink>
       </li>
       <li onClick={closeMenu}>
         <MyLink path="/tutor">Tutor</MyLink>

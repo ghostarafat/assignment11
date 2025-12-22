@@ -3,10 +3,10 @@ import { FiX, FiUser, FiMail } from "react-icons/fi";
 import useAuth from "../../hooks/useAuth";
 import { useEffect } from "react";
 
-const ApplyTuitionModal = ({
+const ApplytutionModal = ({
   isOpen,
   onClose,
-  tuition,
+  tution,
   onSubmit,
   isSubmitting,
 }) => {
@@ -35,10 +35,10 @@ const ApplyTuitionModal = ({
   const handleFormSubmit = (data) => {
     const applicationData = {
       ...data,
-      tuitionId: tuition._id,
-      tuitionSubject: tuition.subject,
-      studentName: tuition.studentName,
-      studentEmail: tuition.studentEmail,
+      tutionId: tution._id,
+      tutionSubject: tution.subject,
+      studentName: tution.studentName,
+      studentEmail: tution.studentEmail,
       appliedAt: new Date().toISOString(),
     };
 
@@ -54,9 +54,9 @@ const ApplyTuitionModal = ({
         {/* HEADER */}
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h3 className="text-2xl font-bold">Apply for Tuition</h3>
+            <h3 className="text-2xl font-bold">Apply for tution</h3>
             <p className="text-sm text-gray-500">
-              {tuition.subject} - {tuition.class}
+              {tution.subject} - {tution.class}
             </p>
           </div>
 
@@ -162,4 +162,4 @@ const ApplyTuitionModal = ({
   );
 };
 
-export default ApplyTuitionModal;
+export default ApplytutionModal;

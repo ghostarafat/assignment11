@@ -60,7 +60,7 @@ const Payments = () => {
             className="text-sm sm:text-base"
             style={{ color: "var(--color-text-muted)" }}
           >
-            See all your tuition payment transactions
+            See all your tution payment transactions
           </p>
         </div>
 

@@ -17,41 +17,39 @@ import Spinner from "../../../components/Shared/Spinner";
 import GradientHeading from "../../../components/Shared/GradientHeading";
 import Error from "../../Error";
 
-const MyTuitions = () => {
+const Mytutions = () => {
   const { user, loading } = useAuth();
   const axiosSecure = useAxiosSecure();
 
   const [searchTerm, setSearchTerm] = useState("");
 
   const {
-    data: tuitionData,
-    isLoading: tuitionDataLoading,
+    data: tutionData,
+    isLoading: tutionDataLoading,
     error,
   } = useQuery({
-    queryKey: ["tuitionsApproved", user?.email],
+    queryKey: ["tutionsApproved", user?.email],
     queryFn: () =>
       axiosSecure
-        .get(`${import.meta.env.VITE_API_URL}/tuitions?status=approved`)
+        .get(`${import.meta.env.VITE_API_URL}/tutions?status=approved`)
         .then((res) => res.data),
   });
 
-  if (loading || tuitionDataLoading) {
+  if (loading || tutionDataLoading) {
     return <Spinner />;
   }
 
   if (error) {
-    return (
-      <Error/>
-    );
+    return <Error />;
   }
 
-  // Filter tuitions based on search
-  const filteredTuitions = tuitionData?.filter((tuition) => {
+  // Filter tutions based on search
+  const filteredtutions = tutionData?.filter((tution) => {
     const matchesSearch =
-      tuition.subject?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      tuition.location?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      tuition.class?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      tuition.studentName?.toLowerCase().includes(searchTerm.toLowerCase());
+      tution.subject?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      tution.location?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      tution.class?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      tution.studentName?.toLowerCase().includes(searchTerm.toLowerCase());
 
     return matchesSearch;
   });
@@ -61,12 +59,12 @@ const MyTuitions = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
         <div className="mb-6 text-center sm:mb-8">
-          <GradientHeading text={"Approved Tuitions"}></GradientHeading>
+          <GradientHeading text={"Approved tutions"}></GradientHeading>
           <p
             className="text-sm sm:text-base"
             style={{ color: "var(--color-text-muted)" }}
           >
-            Browse and apply for approved tuition opportunities
+            Browse and apply for approved tution opportunities
           </p>
         </div>
 
@@ -101,14 +99,14 @@ const MyTuitions = () => {
               className="text-xs sm:text-sm whitespace-nowrap font-medium"
               style={{ color: "var(--color-text-muted)" }}
             >
-              Showing {filteredTuitions?.length || 0} of{" "}
-              {tuitionData?.length || 0} tuitions
+              Showing {filteredtutions?.length || 0} of{" "}
+              {tutionData?.length || 0} tutions
             </div>
           </div>
         </div>
 
         {/* Table Section */}
-        {filteredTuitions && filteredTuitions.length > 0 ? (
+        {filteredtutions && filteredtutions.length > 0 ? (
           <div
             className="rounded-xl shadow-2xl overflow-hidden border"
             style={{
@@ -137,9 +135,9 @@ const MyTuitions = () => {
 
                 {/* Table Body */}
                 <tbody>
-                  {filteredTuitions.map((tuition, index) => (
+                  {filteredtutions.map((tution, index) => (
                     <tr
-                      key={tuition._id || index}
+                      key={tution._id || index}
                       className="hover:bg-primary/5 transition-colors"
                     >
                       {/* Index */}
@@ -157,10 +155,10 @@ const MyTuitions = () => {
                             >
                               <img
                                 src={
-                                  tuition.studentPhoto ||
+                                  tution.studentPhoto ||
                                   "https://via.placeholder.com/150"
                                 }
-                                alt={tuition.studentName}
+                                alt={tution.studentName}
                               />
                             </div>
                           </div>
@@ -169,13 +167,13 @@ const MyTuitions = () => {
                               className="font-bold text-sm sm:text-base"
                               style={{ color: "var(--color-text-dark)" }}
                             >
-                              {tuition.studentName}
+                              {tution.studentName}
                             </div>
                             <div
                               className="text-xs sm:text-sm"
                               style={{ color: "var(--color-text-muted)" }}
                             >
-                              {tuition.studentEmail}
+                              {tution.studentEmail}
                             </div>
                           </div>
                         </div>
@@ -192,7 +190,7 @@ const MyTuitions = () => {
                             className="font-semibold text-sm sm:text-base"
                             style={{ color: "var(--color-text-dark)" }}
                           >
-                            {tuition.subject}
+                            {tution.subject}
                           </span>
                         </div>
                       </td>
@@ -202,7 +200,7 @@ const MyTuitions = () => {
                         className="text-sm sm:text-base"
                         style={{ color: "var(--color-text-dark)" }}
                       >
-                        {tuition.class}
+                        {tution.class}
                       </td>
 
                       {/* Location */}
@@ -216,7 +214,7 @@ const MyTuitions = () => {
                             className="text-sm sm:text-base"
                             style={{ color: "var(--color-text-dark)" }}
                           >
-                            {tuition.location}
+                            {tution.location}
                           </span>
                         </div>
                       </td>
@@ -232,7 +230,7 @@ const MyTuitions = () => {
                             className="font-bold text-sm sm:text-base"
                             style={{ color: "var(--color-primary)" }}
                           >
-                            ৳{tuition.budget}
+                            ৳{tution.budget}
                           </span>
                           <span
                             className="text-xs"
@@ -247,7 +245,7 @@ const MyTuitions = () => {
                       <td>
                         <span className="badge badge-success gap-1 text-xs sm:text-sm">
                           <FiCheckCircle size={14} />
-                          {tuition.status || "approved"}
+                          {tution.status || "approved"}
                         </span>
                       </td>
                     </tr>
@@ -274,7 +272,7 @@ const MyTuitions = () => {
                 className="text-xl sm:text-2xl font-bold mb-2"
                 style={{ color: "var(--color-text-dark)" }}
               >
-                No Approved Tuitions Found
+                No Approved tutions Found
               </h3>
               <p
                 className="text-sm sm:text-base mb-6"
@@ -282,7 +280,7 @@ const MyTuitions = () => {
               >
                 {searchTerm
                   ? "Try adjusting your search"
-                  : "No approved tuitions available at the moment"}
+                  : "No approved tutions available at the moment"}
               </p>
               {searchTerm && (
                 <button
@@ -304,4 +302,4 @@ const MyTuitions = () => {
   );
 };
 
-export default MyTuitions;
+export default Mytutions;

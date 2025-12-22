@@ -11,12 +11,12 @@ import {
 
 import Container from "../../components/Shared/Container";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import TuitionCard from "../../components/TuitionCard";
+import tutionCard from "../../components/tutionCard";
 import Spinner from "../../components/Shared/Spinner";
 import GradientHeading from "../../components/Shared/GradientHeading";
 import Error from "../Error";
 
-const AllTuitions = () => {
+const Alltutions = () => {
   const axiosSecure = useAxiosSecure();
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
@@ -29,12 +29,12 @@ const AllTuitions = () => {
   const [showFilters, setShowFilters] = useState(false);
   const itemsPerPage = 8;
 
-  // Fetch all tuitions
+  // Fetch all tutions
   const { data, isLoading, error } = useQuery({
-    queryKey: ["allTuitions"],
+    queryKey: ["alltutions"],
     queryFn: async () => {
       const res = await axiosSecure.get(
-        `${import.meta.env.VITE_API_URL}/all-tuitions`
+        `${import.meta.env.VITE_API_URL}/all-tutions`
       );
 
       return res.data;
@@ -59,42 +59,42 @@ const AllTuitions = () => {
   const hasActiveFilters =
     filters.class || filters.subject || filters.location || searchTerm;
   // Ensure data is an array - handle different possible data structures
-  let tuitions = [];
+  let tutions = [];
   if (Array.isArray(data)) {
-    tuitions = data;
-  } else if (data && Array.isArray(data.tuitions)) {
-    tuitions = data.tuitions;
+    tutions = data;
+  } else if (data && Array.isArray(data.tutions)) {
+    tutions = data.tutions;
   } else if (data && Array.isArray(data.data)) {
-    tuitions = data.data;
+    tutions = data.data;
   } else if (data && typeof data === "object") {
     // If data is an object, try to find an array property
     const arrayProps = Object.values(data).filter((val) => Array.isArray(val));
     if (arrayProps.length > 0) {
-      tuitions = arrayProps[0];
+      tutions = arrayProps[0];
     }
   }
 
-  // Filter tuitions by search term and filters
-  const filteredTuitions = tuitions.filter((tuition) => {
+  // Filter tutions by search term and filters
+  const filteredtutions = tutions.filter((tution) => {
     // Search filter
     if (searchTerm) {
       const searchLower = searchTerm.toLowerCase();
       const matchesSearch =
-        tuition.subject?.toLowerCase().includes(searchLower) ||
-        tuition.location?.toLowerCase().includes(searchLower) ||
-        tuition.class?.toString().toLowerCase().includes(searchLower);
+        tution.subject?.toLowerCase().includes(searchLower) ||
+        tution.location?.toLowerCase().includes(searchLower) ||
+        tution.class?.toString().toLowerCase().includes(searchLower);
       if (!matchesSearch) return false;
     }
 
     // Class filter
-    if (filters.class && tuition.class?.toString() !== filters.class) {
+    if (filters.class && tution.class?.toString() !== filters.class) {
       return false;
     }
 
     // Subject filter
     if (
       filters.subject &&
-      tuition.subject?.toLowerCase() !== filters.subject.toLowerCase()
+      tution.subject?.toLowerCase() !== filters.subject.toLowerCase()
     ) {
       return false;
     }
@@ -102,7 +102,7 @@ const AllTuitions = () => {
     // Location filter
     if (
       filters.location &&
-      tuition.location?.toLowerCase() !== filters.location.toLowerCase()
+      tution.location?.toLowerCase() !== filters.location.toLowerCase()
     ) {
       return false;
     }
@@ -110,8 +110,8 @@ const AllTuitions = () => {
     return true;
   });
 
-  // Sort tuitions by budget or date
-  const sortedTuitions = [...filteredTuitions].sort((a, b) => {
+  // Sort tutions by budget or date
+  const sortedtutions = [...filteredtutions].sort((a, b) => {
     if (sortBy === "budget-high") {
       return (b.budget || 0) - (a.budget || 0);
     } else if (sortBy === "budget-low") {
@@ -125,10 +125,10 @@ const AllTuitions = () => {
   });
 
   // Pagination calculations
-  const totalPages = Math.ceil(sortedTuitions.length / itemsPerPage);
+  const totalPages = Math.ceil(sortedtutions.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const currentTuitions = sortedTuitions.slice(startIndex, endIndex);
+  const currenttutions = sortedtutions.slice(startIndex, endIndex);
 
   const goToPage = (page) => {
     if (page !== "..." && page >= 1 && page <= totalPages) {
@@ -186,12 +186,12 @@ const AllTuitions = () => {
       <Container className={"px-2.5"}>
         {/* Header Section */}
         <div className="text-center mb-12">
-          <GradientHeading className="text-center mb-4" text="All Tuitions" />
+          <GradientHeading className="text-center mb-4" text="All tutions" />
           <p
             className="text-lg max-w-3xl mx-auto"
             style={{ color: "var(--color-text-muted)" }}
           >
-            Find the tuition that suits your skills! Explore every listing with
+            Find the tution that suits your skills! Explore every listing with
             detailed info so you can choose the best opportunity for your
             teaching journey.
           </p>
@@ -414,8 +414,7 @@ const AllTuitions = () => {
               className="text-sm font-medium"
               style={{ color: "var(--color-text-muted)" }}
             >
-              Showing {currentTuitions.length} of {sortedTuitions.length}{" "}
-              tuitions
+              Showing {currenttutions.length} of {sortedtutions.length} tutions
               {searchTerm && (
                 <span className="ml-2">
                   for "
@@ -499,12 +498,12 @@ const AllTuitions = () => {
           </div>
         )}
 
-        {/* Tuitions Grid */}
-        {currentTuitions.length > 0 ? (
+        {/* tutions Grid */}
+        {currenttutions.length > 0 ? (
           <>
             <div className="grid gap-4 sm:gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              {currentTuitions.map((tuition) => (
-                <TuitionCard key={tuition._id} tuition={tuition} />
+              {currenttutions.map((tution) => (
+                <tutionCard key={tution._id} tution={tution} />
               ))}
             </div>
 
@@ -522,8 +521,8 @@ const AllTuitions = () => {
                     className="text-sm"
                     style={{ color: "var(--color-text-muted)" }}
                   >
-                    Page {currentPage} of {totalPages} ({sortedTuitions.length}{" "}
-                    total tuitions)
+                    Page {currentPage} of {totalPages} ({sortedtutions.length}{" "}
+                    total tutions)
                   </div>
 
                   {/* Pagination Controls */}
@@ -618,15 +617,15 @@ const AllTuitions = () => {
                 className="text-xl sm:text-2xl font-bold mb-3"
                 style={{ color: "var(--color-text-dark)" }}
               >
-                No tuitions found
+                No tutions found
               </h3>
               <p
                 className="text-base sm:text-lg mb-6 leading-relaxed"
                 style={{ color: "var(--color-text-muted)" }}
               >
                 {hasActiveFilters
-                  ? "No tuitions match your current filters. Try adjusting your search criteria or clear some filters."
-                  : "No tuitions are currently available. Check back later for new opportunities."}
+                  ? "No tutions match your current filters. Try adjusting your search criteria or clear some filters."
+                  : "No tutions are currently available. Check back later for new opportunities."}
               </p>
               {hasActiveFilters && (
                 <button
@@ -645,4 +644,4 @@ const AllTuitions = () => {
   );
 };
 
-export default AllTuitions;
+export default Alltutions;

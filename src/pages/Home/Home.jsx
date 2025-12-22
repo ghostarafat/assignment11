@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import Banner from "../../components/Home/Banner";
 import Call from "../../components/Home/Call";
-import LatestTuition from "../../components/Home/LatestTuition";
+import Latesttution from "../../components/Home/Latesttution";
 import LatestTutor from "../../components/Home/LatestTutor";
 import PlatformSections from "../../components/Home/PlatformSections";
 
@@ -68,7 +68,7 @@ function Home() {
         </motion.div>
       </motion.div>
 
-      {/* Latest Tuition with slide-in animation */}
+      {/* Latest tution with slide-in animation */}
       <motion.div
         variants={sectionVariants}
         whileInView="visible"
@@ -79,7 +79,7 @@ function Home() {
           transition: { duration: 0.3 },
         }}
       >
-        <LatestTuition />
+        <Latesttution />
       </motion.div>
 
       {/* Latest Tutor with rotation effect */}

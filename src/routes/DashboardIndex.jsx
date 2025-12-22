@@ -10,8 +10,8 @@ const DashboardIndex = () => {
     if (isRoleLoading) return; // wait for role fetch
     if (!role) return; // no role found
 
-    if (role === "student") navigate("my-tuitions", { replace: true });
-    else if (role === "tutor") navigate("active-tuitions", { replace: true });
+    if (role === "student") navigate("my-tutions", { replace: true });
+    else if (role === "tutor") navigate("active-tutions", { replace: true });
     else if (role === "admin") navigate("user-management", { replace: true });
   }, [role, isRoleLoading, navigate]);
 

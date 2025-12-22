@@ -79,7 +79,7 @@ const Earnings = () => {
             className="text-sm sm:text-base"
             style={{ color: "var(--color-text-muted)" }}
           >
-            Track your tuition earnings and payment history
+            Track your tution earnings and payment history
           </p>
         </div>
 

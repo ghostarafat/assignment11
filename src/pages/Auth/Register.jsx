@@ -83,8 +83,8 @@ function Register() {
       // JWT fetch + role-based redirect
       const userRole = await getJWTAndRole({ email });
       if (userRole === "admin") navigate("/dashboard/user-management");
-      else if (userRole === "tutor") navigate("/dashboard/active-tuitions");
-      else navigate("/dashboard/my-tuitions");
+      else if (userRole === "tutor") navigate("/dashboard/active-tutions");
+      else navigate("/dashboard/my-tutions");
     } catch (err) {
       console.error("Signup error:", err);
       toast.error(err?.message || "Signup failed");

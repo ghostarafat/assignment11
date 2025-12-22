@@ -120,9 +120,7 @@ const TutorDetailsModal = ({ id, onClose }) => {
                         <span className="badge badge-secondary badge-lg gap-2 px-4 py-2">
                           <FiBook size={14} />
                           <span>
-                            {tutor?.tuitionSubject ||
-                              tutor?.subject ||
-                              "Expert"}
+                            {tutor?.tutionSubject || tutor?.subject || "Expert"}
                           </span>
                         </span>
                       </div>
@@ -154,7 +152,7 @@ const TutorDetailsModal = ({ id, onClose }) => {
                           Subject Expertise
                         </label>
                         <p className="text-base text-gray-800 font-medium mt-1">
-                          {tutor?.tuitionSubject ||
+                          {tutor?.tutionSubject ||
                             tutor?.subject ||
                             "Not specified"}
                         </p>
@@ -208,13 +206,13 @@ const TutorDetailsModal = ({ id, onClose }) => {
                     </div>
                   </div>
 
-                  {/* Tuition Details */}
+                  {/* tution Details */}
                   <div className="bg-white border-2 border-purple-100 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
                     <h4 className="text-xl font-bold text-gray-800 mb-6 flex items-center gap-3">
                       <div className="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center">
                         <FiBook className="text-purple-600" size={20} />
                       </div>
-                      Tuition Details
+                      tution Details
                     </h4>
                     <div className="space-y-4">
                       <div className="p-4 bg-purple-50 rounded-xl">

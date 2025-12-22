@@ -50,10 +50,10 @@ const Error = () => {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
-              to="/all-tuitions"
+              to="/all-tutions"
               className="text-blue-600 hover:text-blue-800 text-sm font-medium hover:underline"
             >
-              Browse Tuitions
+              Browse tutions
             </Link>
             <Link
               to="/tutor"

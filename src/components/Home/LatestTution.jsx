@@ -6,7 +6,7 @@ import { FiArrowRight, FiBookOpen, FiZap } from "react-icons/fi";
 
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Container from "../Shared/Container";
-import TuitionCard from "../TuitionCard";
+import tutionCard from "../tutionCard";
 import Spinner from "../Shared/Spinner";
 
 // Swiper styles
@@ -16,14 +16,14 @@ import "swiper/css/navigation";
 import GradientHeading from "../Shared/GradientHeading";
 import TCard from "../TCard";
 
-const LatestTuition = () => {
+const Latesttution = () => {
   const axiosSecure = useAxiosSecure();
 
-  const { data: latestTuitions, isLoading } = useQuery({
-    queryKey: ["allLatestTuitions"],
+  const { data: latesttutions, isLoading } = useQuery({
+    queryKey: ["allLatesttutions"],
     queryFn: async () => {
       const res = await axiosSecure.get(
-        `${import.meta.env.VITE_API_URL}/latest-tuitions`
+        `${import.meta.env.VITE_API_URL}/latest-tutions`
       );
       return res.data;
     },
@@ -49,16 +49,16 @@ const LatestTuition = () => {
           <FiZap className="text-sm sm:text-base" />
           <span className="xs:hidden">New</span>
         </div>
-        {/* Tuitions Carousel */}
+        {/* tutions Carousel */}
 
-        {latestTuitions && (
+        {latesttutions && (
           <div className="relative">
             {/* Custom Navigation Buttons */}
             <div className="flex justify-between items-center mb-6">
               {/* Heading */}
-              <GradientHeading text={"Latest Tuitions"}></GradientHeading>
+              <GradientHeading text={"Latest tutions"}></GradientHeading>
 
-              <Link to="/all-tuitions" className=" gap-2 ">
+              <Link to="/all-tutions" className=" gap-2 ">
                 <p className="flex  text-orange-500 font-bold items-center justify-center">
                   more
                   <FiArrowRight size={16} />
@@ -67,7 +67,7 @@ const LatestTuition = () => {
             </div>
 
             <Swiper
-              loop={latestTuitions.length > 3}
+              loop={latesttutions.length > 3}
               autoplay={{
                 delay: 3000,
                 disableOnInteraction: false,
@@ -104,11 +104,11 @@ const LatestTuition = () => {
                 },
               }}
               modules={[Pagination, Autoplay, Navigation]}
-              className="latest-tuitions-swiper pb-12"
+              className="latest-tutions-swiper pb-12"
             >
-              {latestTuitions.map((tuition) => (
-                <SwiperSlide key={tuition._id}>
-                  <TCard tuition={tuition} />
+              {latesttutions.map((tution) => (
+                <SwiperSlide key={tution._id}>
+                  <TCard tution={tution} />
                 </SwiperSlide>
               ))}
             </Swiper>
@@ -118,20 +118,20 @@ const LatestTuition = () => {
 
       {/* Custom Swiper Styles */}
       <style>{`
-        .latest-tuitions-swiper .swiper-pagination {
+        .latest-tutions-swiper .swiper-pagination {
           bottom: 0 !important;
         }
 
-        .latest-tuitions-swiper .swiper-pagination-bullet {
+        .latest-tutions-swiper .swiper-pagination-bullet {
           background: var(--color-primary);
           opacity: 0.3;
         }
 
-        .latest-tuitions-swiper .swiper-pagination-bullet-active {
+        .latest-tutions-swiper .swiper-pagination-bullet-active {
           opacity: 1;
         }
 
-        .latest-tuitions-swiper .swiper-slide {
+        .latest-tutions-swiper .swiper-slide {
           height: auto;
         }
       `}</style>
@@ -139,4 +139,4 @@ const LatestTuition = () => {
   );
 };
 
-export default LatestTuition;
+export default Latesttution;

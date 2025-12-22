@@ -1,3 +1,4 @@
+// src/routes/router.jsx
 import { createBrowserRouter } from "react-router-dom";
 
 import RootLayout from "../layout/RootLayout";
@@ -10,20 +11,23 @@ import Profile from "../pages/Dashboard/studentDashboard/Profile";
 
 import PrivateRoute from "./PrivateRoute";
 import RoleRoute from "./RoleRoute";
-import MyTuitions from "../pages/Dashboard/studentDashboard/MyTuitions";
-import PostTuition from "../pages/Dashboard/studentDashboard/PostTuition";
+
+import Mytutions from "../pages/Dashboard/studentDashboard/Mytutions";
+import Posttution from "../pages/Dashboard/studentDashboard/Posttution";
 import AppliedTutors from "../pages/Dashboard/studentDashboard/AppliedTutors";
 import Payments from "../pages/Dashboard/studentDashboard/Payments";
-import ActiveTuitions from "../pages/Dashboard/TutorDashboard/ActiveTuitions";
+import PaymentSuccess from "../pages/Dashboard/studentDashboard/PaymentSuccess";
+
+import Activetutions from "../pages/Dashboard/TutorDashboard/Activetutions";
 import Earnings from "../pages/Dashboard/TutorDashboard/Earnings";
 import ManageApplications from "../pages/Dashboard/TutorDashboard/ManageApplications";
+
 import UserManagement from "../pages/Dashboard/AdminDashboard/UserManagement";
-import TuitionManagement from "../pages/Dashboard/AdminDashboard/TuitionManagement";
+import TutionManagement from "../pages/Dashboard/AdminDashboard/TutionManagement";
 import Reports from "../pages/Dashboard/AdminDashboard/Reports";
 
-import AllTuitions from "../pages/Tuitions/AllTuitions";
-import TuitionDetails from "../pages/TuitionDetails";
-import PaymentSuccess from "../pages/Dashboard/studentDashboard/PaymentSuccess";
+import Alltutions from "../pages/tutions/Alltutions";
+import TutionDetails from "../pages/tutionDetails";
 import Spinner from "../components/Shared/Spinner";
 import DashboardIndex from "./DashboardIndex";
 import Tutor from "../pages/Tutor/Tutor";
@@ -34,48 +38,29 @@ import Error from "../pages/Error";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <RootLayout></RootLayout>,
-
-    hydrateFallbackElement: <Spinner></Spinner>,
+    element: <RootLayout />,
+    hydrateFallbackElement: <Spinner />,
     errorElement: <Error />,
     children: [
+      { index: true, element: <Home /> },
+      { path: "/all-tutions", element: <Alltutions /> },
       {
-        index: true,
-        element: <Home />,
-      },
-      {
-        path: "/all-tuitions",
-        element: <AllTuitions></AllTuitions>,
-      },
-      {
-        path: "/tuitions-details/:id",
+        path: "/tutions-details/:id",
         element: (
           <PrivateRoute>
-            <TuitionDetails />
+            <TutionDetails />
           </PrivateRoute>
         ),
       },
-      {
-        path: "/login",
-        element: <Login />,
-      },
-      {
-        path: "/register",
-        element: <Register />,
-      },
-      {
-        path: "/tutor",
-        element: <Tutor></Tutor>,
-      },
-      {
-        path: "/about",
-        element: <About />,
-      },
+      { path: "/login", element: <Login /> },
+      { path: "/register", element: <Register /> },
+      { path: "/tutor", element: <Tutor /> },
+      { path: "/about", element: <About /> },
       {
         path: "/tutors/:id",
         element: (
           <PrivateRoute>
-            <TutorDetails></TutorDetails>
+            <TutorDetails />
           </PrivateRoute>
         ),
       },
@@ -88,27 +73,25 @@ const router = createBrowserRouter([
         <DashboardLayout />
       </PrivateRoute>
     ),
-    hydrateFallbackElement: <Spinner></Spinner>,
+    hydrateFallbackElement: <Spinner />,
     errorElement: <Error />,
     children: [
+      { index: true, element: <DashboardIndex /> },
+
+      // Student
       {
-        index: true,
-        element: <DashboardIndex />,
-      },
-      // ----------------- STUDENT ROUTES -----------------
-      {
-        path: "my-tuitions",
+        path: "my-tutions",
         element: (
           <RoleRoute allowedRoles={["student"]}>
-            <MyTuitions />
+            <Mytutions />
           </RoleRoute>
         ),
       },
       {
-        path: "post-tuition",
+        path: "post-tution",
         element: (
           <RoleRoute allowedRoles={["student"]}>
-            <PostTuition />
+            <Posttution />
           </RoleRoute>
         ),
       },
@@ -132,17 +115,17 @@ const router = createBrowserRouter([
         path: "payment-success",
         element: (
           <RoleRoute allowedRoles={["student"]}>
-            <PaymentSuccess></PaymentSuccess>
+            <PaymentSuccess />
           </RoleRoute>
         ),
       },
 
-      // ----------------- TUTOR ROUTES -----------------
+      // Tutor
       {
-        path: "active-tuitions",
+        path: "active-tutions",
         element: (
           <RoleRoute allowedRoles={["tutor"]}>
-            <ActiveTuitions />
+            <Activetutions />
           </RoleRoute>
         ),
       },
@@ -162,7 +145,8 @@ const router = createBrowserRouter([
           </RoleRoute>
         ),
       },
-      // ----------------- ADMIN ROUTES -----------------
+
+      // Admin
       {
         path: "user-management",
         element: (
@@ -172,10 +156,10 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "tuition-management",
+        path: "tution-management",
         element: (
           <RoleRoute allowedRoles={["admin"]}>
-            <TuitionManagement />
+            <TutionManagement />
           </RoleRoute>
         ),
       },
@@ -188,10 +172,7 @@ const router = createBrowserRouter([
         ),
       },
 
-      {
-        path: "profile",
-        element: <Profile />,
-      },
+      { path: "profile", element: <Profile /> },
     ],
   },
 ]);

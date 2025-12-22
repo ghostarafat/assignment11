@@ -42,11 +42,11 @@ const Call = () => {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
-            to="/all-tuitions"
+            to="/all-tutions"
             className="btn bg-orange-500 border-0 btn-outline btn-lg gap-2 text-white border-white hover:bg-white hover:text-primary"
           >
             <FiBookOpen size={20} />
-            Browse All Tuitions
+            Browse All tutions
           </Link>
           <Link
             to="/register"

@@ -10,14 +10,14 @@ import {
 import Spinner from "../../../components/Shared/Spinner";
 import GradientHeading from "../../../components/Shared/GradientHeading";
 
-const TutorOngoingTuitions = () => {
+const TutorOngoingtutions = () => {
   const axiosSecure = useAxiosSecure();
 
-  const { data: ongoingTuitions = [], isLoading } = useQuery({
-    queryKey: ["tutorOngoingTuitions"],
+  const { data: ongoingtutions = [], isLoading } = useQuery({
+    queryKey: ["tutorOngoingtutions"],
     queryFn: async () => {
       const res = await axiosSecure.get(
-        `${import.meta.env.VITE_API_URL}/tutor-ongoing-tuitions`
+        `${import.meta.env.VITE_API_URL}/tutor-ongoing-tutions`
       );
       return res.data;
     },
@@ -32,12 +32,12 @@ const TutorOngoingTuitions = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
         <div className="mb-6 text-center sm:mb-8">
-          <GradientHeading text={"Active Tuitions"}></GradientHeading>
+          <GradientHeading text={"Active tutions"}></GradientHeading>
           <p
             className="text-sm sm:text-base"
             style={{ color: "var(--color-text-muted)" }}
           >
-            Manage your ongoing tuition sessions
+            Manage your ongoing tution sessions
           </p>
         </div>
 
@@ -55,13 +55,13 @@ const TutorOngoingTuitions = () => {
                 className="text-sm font-medium"
                 style={{ color: "var(--color-text-muted)" }}
               >
-                Total Active Tuitions
+                Total Active tutions
               </p>
               <p
                 className="text-3xl sm:text-4xl font-bold mt-1"
                 style={{ color: "var(--color-primary)" }}
               >
-                {ongoingTuitions.length}
+                {ongoingtutions.length}
               </p>
             </div>
             <div
@@ -74,7 +74,7 @@ const TutorOngoingTuitions = () => {
         </div>
 
         {/* Table Section */}
-        {ongoingTuitions.length > 0 ? (
+        {ongoingtutions.length > 0 ? (
           <div
             className="rounded-xl shadow-2xl overflow-hidden border"
             style={{
@@ -101,7 +101,7 @@ const TutorOngoingTuitions = () => {
 
                 {/* Table Body */}
                 <tbody>
-                  {ongoingTuitions.map((item, index) => (
+                  {ongoingtutions.map((item, index) => (
                     <tr
                       key={item._id}
                       className="hover:bg-primary/5 transition-colors"
@@ -138,7 +138,7 @@ const TutorOngoingTuitions = () => {
                             className="font-semibold text-sm sm:text-base"
                             style={{ color: "var(--color-text-dark)" }}
                           >
-                            {item.tuitionSubject}
+                            {item.tutionSubject}
                           </span>
                         </div>
                       </td>
@@ -196,13 +196,13 @@ const TutorOngoingTuitions = () => {
                 className="text-xl sm:text-2xl font-bold mb-2"
                 style={{ color: "var(--color-text-dark)" }}
               >
-                No Active Tuitions
+                No Active tutions
               </h3>
               <p
                 className="text-sm sm:text-base"
                 style={{ color: "var(--color-text-muted)" }}
               >
-                You don't have any active tuitions at the moment
+                You don't have any active tutions at the moment
               </p>
             </div>
           </div>
@@ -212,4 +212,4 @@ const TutorOngoingTuitions = () => {
   );
 };
 
-export default TutorOngoingTuitions;
+export default TutorOngoingtutions;

@@ -86,7 +86,7 @@ const DashboardLayout = () => {
               <>
                 <li>
                   <NavLink
-                    to="/dashboard/my-tuitions"
+                    to="/dashboard/my-tutions"
                     onClick={() => setIsMobileSidebarOpen(false)}
                     className={({ isActive }) =>
                       `flex items-center gap-3 p-3 rounded-lg transition-all duration-200 ${
@@ -98,13 +98,13 @@ const DashboardLayout = () => {
                   >
                     <FaBook size={18} className="shrink-0" />
                     {isSidebarOpen && (
-                      <span className="font-medium">My Tuitions</span>
+                      <span className="font-medium">My tutions</span>
                     )}
                   </NavLink>
                 </li>
                 <li>
                   <NavLink
-                    to="/dashboard/post-tuition"
+                    to="/dashboard/post-tution"
                     onClick={() => setIsMobileSidebarOpen(false)}
                     className={({ isActive }) =>
                       `flex items-center gap-3 p-3 rounded-lg transition-all duration-200 ${
@@ -116,7 +116,7 @@ const DashboardLayout = () => {
                   >
                     <FaPencilAlt size={18} className="shrink-0" />
                     {isSidebarOpen && (
-                      <span className="font-medium">Post Tuition</span>
+                      <span className="font-medium">Post tution</span>
                     )}
                   </NavLink>
                 </li>
@@ -164,7 +164,7 @@ const DashboardLayout = () => {
               <>
                 <li>
                   <NavLink
-                    to="/dashboard/active-tuitions"
+                    to="/dashboard/active-tutions"
                     onClick={() => setIsMobileSidebarOpen(false)}
                     className={({ isActive }) =>
                       `flex items-center gap-3 p-3 rounded-lg transition-all duration-200 ${
@@ -176,7 +176,7 @@ const DashboardLayout = () => {
                   >
                     <FaBookOpen size={18} className="shrink-0" />
                     {isSidebarOpen && (
-                      <span className="font-medium">Active Tuitions</span>
+                      <span className="font-medium">Active tutions</span>
                     )}
                   </NavLink>
                 </li>
@@ -242,7 +242,7 @@ const DashboardLayout = () => {
                 </li>
                 <li>
                   <NavLink
-                    to="/dashboard/tuition-management"
+                    to="/dashboard/tution-management"
                     onClick={() => setIsMobileSidebarOpen(false)}
                     className={({ isActive }) =>
                       `flex items-center gap-3 p-3 rounded-lg transition-all duration-200 ${
@@ -254,7 +254,7 @@ const DashboardLayout = () => {
                   >
                     <FaTasks size={18} className="shrink-0" />
                     {isSidebarOpen && (
-                      <span className="font-medium">Tuition Management</span>
+                      <span className="font-medium">tution Management</span>
                     )}
                   </NavLink>
                 </li>

@@ -1,15 +1,15 @@
 import { FiBookOpen, FiMapPin, FiDollarSign, FiCalendar } from "react-icons/fi";
 import { Link } from "react-router";
 import { MdOutlineDoubleArrow } from "react-icons/md";
-const TuitionCard = ({ tuition }) => {
+const tutionCard = ({ tution }) => {
   const {
     subject,
-    class: tuitionClass,
+    class: tutionClass,
     location,
     budget,
 
     created_at,
-  } = tuition;
+  } = tution;
 
   const formatDate = (date) => {
     if (!date) return "Recently";
@@ -36,7 +36,7 @@ const TuitionCard = ({ tuition }) => {
           </div>
         </div>
 
-        {/* Tuition Details */}
+        {/* tution Details */}
         <div className="space-y-3 mb-4">
           {/* Class/Grade */}
           <div className="flex items-center gap-3 p-3 bg-primary/5 rounded-lg">
@@ -48,7 +48,7 @@ const TuitionCard = ({ tuition }) => {
                 Class/Grade
               </p>
               <p className="font-semibold line-clamp-1 text-base">
-                {tuitionClass}
+                {tutionClass}
               </p>
             </div>
           </div>
@@ -89,7 +89,7 @@ const TuitionCard = ({ tuition }) => {
           {/* Action Button */}
 
           <Link
-            to={`/tuitions-details/${tuition._id}`}
+            to={`/tutions-details/${tution._id}`}
             className="w-full text-base btn text-white font-bold py-3 
             rounded-lg shadow-lg hover:shadow-xl transition-all
              duration-300 hover:scale-[1.02] active:scale-95 border-none 
@@ -107,4 +107,4 @@ const TuitionCard = ({ tuition }) => {
   );
 };
 
-export default TuitionCard;
+export default tutionCard;

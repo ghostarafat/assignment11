@@ -55,8 +55,8 @@ function Login() {
         toast.success("Login Successful");
         const role = await getJWTAndRole(userCredential.user);
         if (role === "admin") navigate("/dashboard/user-management");
-        else if (role === "tutor") navigate("/dashboard/active-tuitions");
-        else navigate("/dashboard/my-tuitions");
+        else if (role === "tutor") navigate("/dashboard/active-tutions");
+        else navigate("/dashboard/my-tutions");
       })
       .catch((err) => {
         console.error(err);
@@ -72,8 +72,8 @@ function Login() {
         toast.success("Google Login Successful");
         const role = await getJWTAndRole(userCredential.user);
         if (role === "admin") navigate("/dashboard/user-management");
-        else if (role === "tutor") navigate("/dashboard/active-tuitions");
-        else navigate("/dashboard/my-tuitions");
+        else if (role === "tutor") navigate("/dashboard/active-tutions");
+        else navigate("/dashboard/my-tutions");
       })
       .catch((err) => {
         console.error(err);

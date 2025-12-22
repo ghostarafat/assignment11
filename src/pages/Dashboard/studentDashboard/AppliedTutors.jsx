@@ -76,11 +76,11 @@ const AppliedTutors = () => {
   const handlePayment = async (app) => {
     const paymentInfo = {
       price: app.salary,
-      tuitionId: app.tuitionId,
+      tutionId: app.tutionId,
       tutorEmail: app.tutorEmail,
       tutorName: app.tutorName,
       studentEmail: app.studentEmail,
-      subject: app.tuitionSubject,
+      subject: app.tutionSubject,
     };
 
     const res = await axiosSecure.post(
@@ -105,7 +105,7 @@ const AppliedTutors = () => {
             className="text-lg sm:text-base"
             style={{ color: "var(--color-text-muted)" }}
           >
-            Manage applications from tutors for your tuition requests
+            Manage applications from tutors for your tution requests
           </p>
         </div>
 
@@ -223,7 +223,7 @@ const AppliedTutors = () => {
                             className="font-semibold text-sm sm:text-base"
                             style={{ color: "var(--color-text-dark)" }}
                           >
-                            {app.tuitionSubject}
+                            {app.tutionSubject}
                           </span>
                         </div>
                       </td>
@@ -327,7 +327,7 @@ const AppliedTutors = () => {
                         {(() => {
                           const isPaid = paymentData.some(
                             (payment) =>
-                              payment.tuitionId === app.tuitionId &&
+                              payment.tutionId === app.tutionId &&
                               payment.tutorEmail === app.tutorEmail &&
                               payment.paymentStatus === "paid"
                           );

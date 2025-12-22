@@ -25,7 +25,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const quickLinks = [
-    { name: "All Tuitions", path: "/all-tuitions" },
+    { name: "All Tutions", path: "/all-tutions" },
     { name: "Find Tutors", path: "/tutor" },
 
     { name: "About", path: "/about" },

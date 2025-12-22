@@ -66,7 +66,7 @@ const ManageApplications = () => {
             className="text-sm sm:text-base"
             style={{ color: "var(--color-text-muted)" }}
           >
-            View and track all your tuition applications
+            View and track all your tution applications
           </p>
         </div>
 
@@ -184,7 +184,7 @@ const ManageApplications = () => {
                             className="font-semibold text-sm sm:text-base"
                             style={{ color: "var(--color-text-dark)" }}
                           >
-                            {app.tuitionSubject}
+                            {app.tutionSubject}
                           </span>
                         </div>
                       </td>

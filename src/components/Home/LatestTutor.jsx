@@ -10,7 +10,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-import TuitionCard from "../TuitionCard";
+import tutionCard from "../tutionCard";
 import { FiArrowRight, FiZap } from "react-icons/fi";
 import Container from "../Shared/Container";
 import Spinner from "../Shared/Spinner";
@@ -51,7 +51,7 @@ const LatestTutor = () => {
           <FiZap className="text-sm sm:text-base" />
           <span className="xs:hidden">Meet the Team Passionate People</span>
         </div>
-        {/* Tuitions Carousel */}
+        {/* tutions Carousel */}
 
         {latestTutorData && (
           <div className="relative">
@@ -106,7 +106,7 @@ const LatestTutor = () => {
                 },
               }}
               modules={[Pagination, Autoplay, Navigation]}
-              className="latest-tuitions-swiper pb-12"
+              className="latest-tutions-swiper pb-12"
             >
               {latestTutorData.map((tutor) => (
                 <SwiperSlide key={tutor._id}>
@@ -120,20 +120,20 @@ const LatestTutor = () => {
 
       {/* Custom Swiper Styles */}
       <style>{`
-        .latest-tuitions-swiper .swiper-pagination {
+        .latest-tutions-swiper .swiper-pagination {
           bottom: 0 !important;
         }
 
-        .latest-tuitions-swiper .swiper-pagination-bullet {
+        .latest-tutions-swiper .swiper-pagination-bullet {
           background: var(--color-primary);
           opacity: 0.3;
         }
 
-        .latest-tuitions-swiper .swiper-pagination-bullet-active {
+        .latest-tutions-swiper .swiper-pagination-bullet-active {
           opacity: 1;
         }
 
-        .latest-tuitions-swiper .swiper-slide {
+        .latest-tutions-swiper .swiper-slide {
           height: auto;
         }
       `}</style>

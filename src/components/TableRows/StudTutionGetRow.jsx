@@ -4,12 +4,12 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { useMutation } from "@tanstack/react-query";
 
-const StudTuitionGetRow = ({ tuitionData, refetch, onEdit }) => {
+const StudtutionGetRow = ({ tutionData, refetch, onEdit }) => {
   const axiosSecure = useAxiosSecure();
   const deleteMutation = useMutation({
     mutationFn: async (id) => {
       const res = await axiosSecure.delete(
-        `${import.meta.env.VITE_API_URL}/tuitions/${id}`
+        `${import.meta.env.VITE_API_URL}/tutions/${id}`
       );
       return res.data;
     },
@@ -42,9 +42,9 @@ const StudTuitionGetRow = ({ tuitionData, refetch, onEdit }) => {
     });
   };
 
-  const handleEdit = (tuition) => {
+  const handleEdit = (tution) => {
     if (onEdit) {
-      onEdit(tuition);
+      onEdit(tution);
     }
   };
 
@@ -63,36 +63,36 @@ const StudTuitionGetRow = ({ tuitionData, refetch, onEdit }) => {
           </tr>
         </thead>
         <tbody>
-          {tuitionData.map((tuition, i) => {
+          {tutionData.map((tution, i) => {
             return (
               <tr key={i}>
                 <th>{i + 1}</th>
-                <td>{tuition.subject}</td>
-                <td>{tuition.location}</td>
-                <td> {tuition.budget}</td>
+                <td>{tution.subject}</td>
+                <td>{tution.location}</td>
+                <td> {tution.budget}</td>
                 <td>
                   <span
                     className={`badge ${
-                      tuition.status === "approved"
+                      tution.status === "approved"
                         ? "badge-success"
-                        : tuition.status === "rejected"
+                        : tution.status === "rejected"
                         ? "badge-error"
                         : "badge-warning"
                     }`}
                   >
-                    {tuition.status}
+                    {tution.status}
                   </span>
                 </td>
                 <td>
                   <button
                     className="btn btn-sm mr-2"
-                    onClick={() => handleEdit(tuition)}
+                    onClick={() => handleEdit(tution)}
                   >
                     <FiEdit2 size={18} />
                   </button>
                   <button
                     className="btn btn-sm"
-                    onClick={() => handleDelete(tuition._id)}
+                    onClick={() => handleDelete(tution._id)}
                   >
                     {" "}
                     <FiTrash2 size={18} />
@@ -107,4 +107,4 @@ const StudTuitionGetRow = ({ tuitionData, refetch, onEdit }) => {
   );
 };
 
-export default StudTuitionGetRow;
+export default StudtutionGetRow;

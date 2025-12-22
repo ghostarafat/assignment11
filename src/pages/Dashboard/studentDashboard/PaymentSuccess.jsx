@@ -120,7 +120,7 @@ const PaymentSuccess = () => {
                     <div className="space-y-3">
                       <div className="flex justify-between items-center">
                         <span className="text-gray-600">Service:</span>
-                        <span className="font-medium">Tuition Fee</span>
+                        <span className="font-medium">tution Fee</span>
                       </div>
                       <div className="flex justify-between items-center">
                         <span className="text-gray-600">Duration:</span>

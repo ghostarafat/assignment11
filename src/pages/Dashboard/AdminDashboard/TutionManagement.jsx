@@ -1,17 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
 
-import AdminTuitionTable from "../../../components/TableRows/AdminTuitionTable";
+import AdmintutionTable from "../../../components/TableRows/AdmintutionTable";
 import Spinner from "../../../components/Shared/Spinner";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import GradientHeading from "../../../components/Shared/GradientHeading";
 
-const TuitionManagement = () => {
+const tutionManagement = () => {
   const axiosSecure = useAxiosSecure();
   const { data, isLoading, error, refetch } = useQuery({
-    queryKey: ["allTuitionsAdmin"],
+    queryKey: ["alltutionsAdmin"],
     queryFn: async () => {
       const res = await axiosSecure.get(
-        `${import.meta.env.VITE_API_URL}/all-tuitions-admin?admin=true`
+        `${import.meta.env.VITE_API_URL}/all-tutions-admin?admin=true`
       );
       return res.data;
     },
@@ -24,18 +24,18 @@ const TuitionManagement = () => {
     <div>
       {/* Header Section */}
       <div className="mb-6 text-center sm:mb-8">
-        <GradientHeading text={"Tuition Management"}></GradientHeading>
+        <GradientHeading text={"tution Management"}></GradientHeading>
 
         <p
           className="text-lg text-center sm:text-base"
           style={{ color: "var(--color-text-muted)" }}
         >
-          Manage all tuition in the system
+          Manage all tution in the system
         </p>
       </div>
-      <AdminTuitionTable data={data} refetch={refetch}></AdminTuitionTable>
+      <AdmintutionTable data={data} refetch={refetch}></AdmintutionTable>
     </div>
   );
 };
 
-export default TuitionManagement;
+export default tutionManagement;

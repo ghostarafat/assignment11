@@ -1,11 +1,11 @@
-eTuitionBd - Tuition Management System
+etutionBd - tution Management System
 Project Overview
 
-eTuitionBd is a comprehensive Tuition Management System designed for students, tutors, and admins to manage tuition-related activities efficiently. This platform provides features for tuition posting, tutor applications, financial tracking, secure payments, and structured communication between students and tutors.
+etutionBd is a comprehensive tution Management System designed for students, tutors, and admins to manage tution-related activities efficiently. This platform provides features for tution posting, tutor applications, financial tracking, secure payments, and structured communication between students and tutors.
 
 Purpose:
 
-Solve the real problem of finding qualified tutors and verified tuition.
+Solve the real problem of finding qualified tutors and verified tution.
 
 Reduce friction between students and tutors with automated workflows.
 
@@ -26,33 +26,33 @@ Private routes with role-based redirection
 
 Student Dashboard
 
-My Tuitions: View approved tuition posts
+My tutions: View approved tution posts
 
-Post New Tuition: Create new tuition requests
+Post New tution: Create new tution requests
 
 Applied Tutors: View tutor applications
 
-Payments: Track tuition payments
+Payments: Track tution payments
 
 Profile Settings: Update personal information
 
-CRUD functionalities for tuition posts
+CRUD functionalities for tution posts
 
 Tutor Dashboard
 
-My Applications: Track status of tuition applications
+My Applications: Track status of tution applications
 
-Ongoing Tuitions: View approved tuition posts
+Ongoing tutions: View approved tution posts
 
-Revenue History: Track earnings from completed tuitions
+Revenue History: Track earnings from completed tutions
 
-Apply to tuitions with qualifications, experience, and expected salary
+Apply to tutions with qualifications, experience, and expected salary
 
 Admin Dashboard
 
 User Management: Update/delete users, change roles
 
-Tuition Management: Approve/reject tuition posts
+tution Management: Approve/reject tution posts
 
 Reports & Analytics: Total earnings, transaction history, platform insights
 
@@ -60,7 +60,7 @@ Home Page
 
 Hero section with engaging visuals
 
-Dynamic Latest Tuitions & Tutors section (auto-fetched from backend)
+Dynamic Latest tutions & Tutors section (auto-fetched from backend)
 
 Platform Steps section (3-step visual grid)
 
@@ -72,7 +72,7 @@ Additional Functionalities
 
 Stripe payment integration for approved tutors
 
-Search, sort, pagination, and advanced filters on tuition listings
+Search, sort, pagination, and advanced filters on tution listings
 
 Mobile-responsive layouts for dashboards and public pages
 
@@ -90,7 +90,7 @@ Class calendar sync
 
 Notifications system
 
-Bookmarking tutors or tuition posts
+Bookmarking tutors or tution posts
 
 Tech Stack
 
@@ -110,11 +110,11 @@ Environment Variables: Firebase keys & MongoDB credentials stored securely
 
 Project Workflow
 
-Students register and post tuition requirements (class, subject, budget, location, schedule).
+Students register and post tution requirements (class, subject, budget, location, schedule).
 
-Tutors browse tuition posts and apply to suitable tuitions.
+Tutors browse tution posts and apply to suitable tutions.
 
-Admins review applications, verify tutors, and approve/reject tuition posts.
+Admins review applications, verify tutors, and approve/reject tution posts.
 
 Admins monitor platform activity, handle disputes, and generate reports.
 
@@ -168,9 +168,9 @@ Dashboard charts & graphs for Admin
 
 Challenges Implemented
 
-Search & Sort functionality on tuition listings
+Search & Sort functionality on tution listings
 
-Pagination on tuition listing page
+Pagination on tution listing page
 
 JWT Token verification with roles & expiration
 

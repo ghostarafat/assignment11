@@ -14,17 +14,17 @@ import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import StudTuitionGetRow from "../../../components/TableRows/StudTuitionGetRow";
-import TuitionEdit from "../../../components/Modal/TuitionEdit";
+import StudtutionGetRow from "../../../components/TableRows/StudtutionGetRow";
+import tutionEdit from "../../../components/Modal/tutionEdit";
 import Spinner from "../../../components/Shared/Spinner";
 import GradientHeading from "../../../components/Shared/GradientHeading";
 import Error from "../../Error";
 
-const PostTuition = () => {
+const Posttution = () => {
   const { user, loading } = useAuth();
   const axiosSecure = useAxiosSecure();
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [selectedTuition, setSelectedTuition] = useState(null);
+  const [selectedtution, setSelectedtution] = useState(null);
   const {
     register,
     handleSubmit,
@@ -51,8 +51,8 @@ const PostTuition = () => {
 
   const onSubmit = async (data) => {
     try {
-      await axiosSecure.post(`${import.meta.env.VITE_API_URL}/tuitions`, data);
-      toast.success("Tuition posted successfully!");
+      await axiosSecure.post(`${import.meta.env.VITE_API_URL}/tutions`, data);
+      toast.success("tution posted successfully!");
       reset({
         studentName: user.displayName || "",
         studentEmail: user.email || "",
@@ -65,58 +65,58 @@ const PostTuition = () => {
       });
       refetch();
     } catch (error) {
-      console.error("Error posting tuition:", error);
-      toast.error("Failed to post tuition. Please try again.");
+      console.error("Error posting tution:", error);
+      toast.error("Failed to post tution. Please try again.");
     }
   };
 
   const {
-    data: tuitionData,
-    isLoading: tuitionDataLoading,
+    data: tutionData,
+    isLoading: tutionDataLoading,
     error,
     refetch,
   } = useQuery({
-    queryKey: ["tuitionsPending", user?.email],
+    queryKey: ["tutionsPending", user?.email],
     queryFn: () =>
       axiosSecure
-        .get(`${import.meta.env.VITE_API_URL}/tuitions?status=pending`)
+        .get(`${import.meta.env.VITE_API_URL}/tutions?status=pending`)
         .then((res) => res.data),
   });
 
   // Handle edit button click
-  const handleEdit = (tuition) => {
-    setSelectedTuition(tuition);
+  const handleEdit = (tution) => {
+    setSelectedtution(tution);
     setIsEditModalOpen(true);
   };
 
   // Handle modal close
   const handleCloseModal = () => {
     setIsEditModalOpen(false);
-    setSelectedTuition(null);
+    setSelectedtution(null);
   };
 
-  // Handle update tuition
+  // Handle update tution
   const handleUpdate = () => {
     refetch();
   };
 
-  // Handle delete tuition
+  // Handle delete tution
   const handleDelete = async (id) => {
-    if (window.confirm("Are  you want to delete this tuition?")) {
+    if (window.confirm("Are  you want to delete this tution?")) {
       try {
         await axiosSecure.delete(
-          `${import.meta.env.VITE_API_URL}/tuitions/${id}`
+          `${import.meta.env.VITE_API_URL}/tutions/${id}`
         );
-        toast.success("Tuition deleted successfully!");
+        toast.success("tution deleted successfully!");
         refetch();
       } catch (error) {
-        console.error("Error deleting tuition:", error);
-        toast.error("Failed to delete tuition. Please try again.");
+        console.error("Error deleting tution:", error);
+        toast.error("Failed to delete tution. Please try again.");
       }
     }
   };
 
-  if (loading || tuitionDataLoading) return <Spinner />;
+  if (loading || tutionDataLoading) return <Spinner />;
   if (error) return <Error />;
   return (
     <>
@@ -124,7 +124,7 @@ const PostTuition = () => {
         <div className="container mx-auto max-w-7xl">
           {/* Header Section */}
           <div className="text-center mb-4 sm:mb-6 lg:mb-8 px-2">
-            <GradientHeading text={" Post a Tuition Request"}></GradientHeading>
+            <GradientHeading text={" Post a tution Request"}></GradientHeading>
             <p
               className="text-xs sm:text-sm lg:text-base mt-2 px-4"
               style={{ color: "var(--color-text-muted)" }}
@@ -198,12 +198,12 @@ const PostTuition = () => {
                   </div>
                 </div>
 
-                {/* Tuition Details Section */}
+                {/* tution Details Section */}
                 <div className="space-y-3 sm:space-y-4">
                   <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
                     <div className="w-1 h-6 sm:h-8 bg-secondary rounded-full"></div>
                     <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-base-content">
-                      Tuition Details
+                      tution Details
                     </h3>
                   </div>
 
@@ -327,7 +327,7 @@ const PostTuition = () => {
                     }}
                   >
                     <FaPaperPlane className="text-xs sm:text-sm" />
-                    <span className="text-sm sm:text-base">Post Tuition</span>
+                    <span className="text-sm sm:text-base">Post tution</span>
                   </button>
                 </div>
               </form>
@@ -336,10 +336,10 @@ const PostTuition = () => {
         </div>
       </div>
 
-      {tuitionData.length > 0 && (
+      {tutionData.length > 0 && (
         <div className="mt-6 sm:mt-8 lg:mt-10 px-2 sm:px-4 lg:px-6">
-          <StudTuitionGetRow
-            tuitionData={tuitionData}
+          <StudtutionGetRow
+            tutionData={tutionData}
             refetch={refetch}
             onEdit={handleEdit}
             onDelete={handleDelete}
@@ -348,14 +348,14 @@ const PostTuition = () => {
       )}
 
       {/* Edit Modal */}
-      <TuitionEdit
+      <tutionEdit
         isOpen={isEditModalOpen}
         onClose={handleCloseModal}
-        tuitionData={selectedTuition}
+        tutionData={selectedtution}
         onUpdate={handleUpdate}
       />
     </>
   );
 };
 
-export default PostTuition;
+export default Posttution;

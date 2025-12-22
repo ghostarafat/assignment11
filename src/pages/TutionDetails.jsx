@@ -18,11 +18,11 @@ import {
 import toast from "react-hot-toast";
 import axios from "axios";
 import useRole from "../hooks/useRole";
-import ApplyTuitionModal from "../components/Modal/ApplyTuitionModal";
+import ApplytutionModal from "../components/Modal/ApplytutionModal";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import Spinner from "../components/Shared/Spinner";
 
-const TuitionDetails = () => {
+const tutionDetails = () => {
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
@@ -31,22 +31,22 @@ const TuitionDetails = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const {
-    data: tuition,
+    data: tution,
     isLoading,
     error,
   } = useQuery({
-    queryKey: ["tuition", id],
+    queryKey: ["tution", id],
     enabled: !!id,
     queryFn: async () => {
       const res = await axios.get(
-        `${import.meta.env.VITE_API_URL}/tuitions-details/${id}`
+        `${import.meta.env.VITE_API_URL}/tutions-details/${id}`
       );
       return res.data;
     },
   });
 
   const handleApply = () => {
-    if (!tuition) return;
+    if (!tution) return;
     setIsModalOpen(true);
   };
 
@@ -65,7 +65,7 @@ const TuitionDetails = () => {
       );
 
       if (res.data) {
-        toast.success(`Successfully applied for ${tuition.subject}!`);
+        toast.success(`Successfully applied for ${tution.subject}!`);
         setIsModalOpen(false);
       }
     } catch (error) {
@@ -93,7 +93,7 @@ const TuitionDetails = () => {
     return <Spinner></Spinner>;
   }
 
-  if (error || !tuition) {
+  if (error || !tution) {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div
@@ -107,7 +107,7 @@ const TuitionDetails = () => {
           <div>
             <h3 className="font-bold text-error">Error Loading Details</h3>
             <div className="text-sm text-error">
-              Unable to load tuition details. Please try again later.
+              Unable to load tution details. Please try again later.
             </div>
           </div>
         </div>
@@ -143,10 +143,10 @@ const TuitionDetails = () => {
                 backgroundClip: "text",
               }}
             >
-              Tuition Details
+              tution Details
             </h1>
             <p className="text-lg" style={{ color: "var(--color-text-muted)" }}>
-              Complete information about this tuition opportunity
+              Complete information about this tution opportunity
             </p>
           </div>
         </div>
@@ -171,12 +171,12 @@ const TuitionDetails = () => {
               >
                 <div className="avatar">
                   <div className="w-32 h-32 rounded-full ring-4 ring-white shadow-xl">
-                    <img src={tuition.studentPhoto} alt={tuition.studentName} />
+                    <img src={tution.studentPhoto} alt={tution.studentName} />
                   </div>
                 </div>
 
                 <h3 className="text-2xl font-bold mt-4 text-white">
-                  {tuition.studentName}
+                  {tution.studentName}
                 </h3>
               </div>
 
@@ -211,12 +211,12 @@ const TuitionDetails = () => {
                       className="font-semibold text-sm"
                       style={{ color: "var(--color-text-dark)" }}
                     >
-                      {tuition.studentEmail}
+                      {tution.studentEmail}
                     </p>
                   </div>
                 </div>
 
-                {tuition.studentPhone && (
+                {tution.studentPhone && (
                   <div
                     className="flex items-center gap-3 p-3 rounded-lg"
                     style={{ backgroundColor: "var(--color-bg-soft)" }}
@@ -236,7 +236,7 @@ const TuitionDetails = () => {
                         className="font-semibold text-sm"
                         style={{ color: "var(--color-text-dark)" }}
                       >
-                        {tuition.studentPhone}
+                        {tution.studentPhone}
                       </p>
                     </div>
                   </div>
@@ -261,7 +261,7 @@ const TuitionDetails = () => {
                       className="font-semibold text-sm"
                       style={{ color: "var(--color-text-dark)" }}
                     >
-                      {formatDate(tuition.created_at)}
+                      {formatDate(tution.created_at)}
                     </p>
                   </div>
                 </div>
@@ -278,7 +278,7 @@ const TuitionDetails = () => {
                       }}
                     >
                       <FiSend size={16} />
-                      Apply for this Tuition
+                      Apply for this tution
                     </button>
                   </div>
                 )}
@@ -286,7 +286,7 @@ const TuitionDetails = () => {
             </div>
           </div>
 
-          {/* Tuition Details Card */}
+          {/* tution Details Card */}
           <div className="lg:col-span-2 space-y-6">
             {/* Main Details */}
             <div
@@ -305,7 +305,7 @@ const TuitionDetails = () => {
                   className="text-3xl font-extrabold"
                   style={{ color: "var(--color-text-dark)" }}
                 >
-                  Tuition Requirements
+                  tution Requirements
                 </h2>
               </div>
 
@@ -323,7 +323,7 @@ const TuitionDetails = () => {
                     <FiBook size={24} />
                     <span className="text-sm font-medium">Subject</span>
                   </div>
-                  <p className="text-2xl font-bold">{tuition.subject}</p>
+                  <p className="text-2xl font-bold">{tution.subject}</p>
                 </div>
 
                 {/* Class */}
@@ -337,7 +337,7 @@ const TuitionDetails = () => {
                   <div className="flex items-center gap-3 mb-3">
                     <span className="text-sm font-medium">Class Level</span>
                   </div>
-                  <p className="text-2xl font-bold">{tuition.class}</p>
+                  <p className="text-2xl font-bold">{tution.class}</p>
                 </div>
               </div>
 
@@ -367,7 +367,7 @@ const TuitionDetails = () => {
                     className="text-xl font-bold"
                     style={{ color: "var(--color-success)" }}
                   >
-                    {tuition.location}
+                    {tution.location}
                   </p>
                 </div>
 
@@ -395,7 +395,7 @@ const TuitionDetails = () => {
                     className="text-3xl font-bold"
                     style={{ color: "var(--color-warning)" }}
                   >
-                    ৳{tuition.budget?.toLocaleString()}
+                    ৳{tution.budget?.toLocaleString()}
                     <span
                       className="text-sm font-normal ml-2"
                       style={{ color: "var(--color-text-muted)" }}
@@ -433,7 +433,7 @@ const TuitionDetails = () => {
                     className="font-bold"
                     style={{ color: "var(--color-text-dark)" }}
                   >
-                    {tuition.class}
+                    {tution.class}
                   </p>
                 </div>
 
@@ -457,7 +457,7 @@ const TuitionDetails = () => {
                     className="font-bold"
                     style={{ color: "var(--color-text-dark)" }}
                   >
-                    {tuition.location?.includes("Online")
+                    {tution.location?.includes("Online")
                       ? "Online"
                       : "In-Person"}
                   </p>
@@ -493,10 +493,10 @@ const TuitionDetails = () => {
       </div>
 
       {/* MODAL */}
-      <ApplyTuitionModal
+      <ApplytutionModal
         isOpen={isModalOpen}
         onClose={handleModalClose}
-        tuition={tuition}
+        tution={tution}
         onSubmit={handleApplicationSubmit}
         isSubmitting={isSubmitting}
       />
@@ -504,4 +504,4 @@ const TuitionDetails = () => {
   );
 };
 
-export default TuitionDetails;
+export default tutionDetails;

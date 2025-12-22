@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
-const TuitionEdit = ({ isOpen, onClose, tuitionData, onUpdate }) => {
+const tutionEdit = ({ isOpen, onClose, tutionData, onUpdate }) => {
   const {
     register,
     handleSubmit,
@@ -12,33 +12,33 @@ const TuitionEdit = ({ isOpen, onClose, tuitionData, onUpdate }) => {
   } = useForm();
   const axiosSecure = useAxiosSecure();
   useEffect(() => {
-    if (tuitionData) {
+    if (tutionData) {
       reset({
-        studentName: tuitionData.studentName || "",
-        studentEmail: tuitionData.studentEmail || "",
-        subject: tuitionData.subject || "",
-        class: tuitionData.class || "",
-        location: tuitionData.location || "",
-        budget: tuitionData.budget || "",
+        studentName: tutionData.studentName || "",
+        studentEmail: tutionData.studentEmail || "",
+        subject: tutionData.subject || "",
+        class: tutionData.class || "",
+        location: tutionData.location || "",
+        budget: tutionData.budget || "",
       });
     }
-  }, [tuitionData, reset]);
+  }, [tutionData, reset]);
 
   const onSubmit = async (data) => {
     try {
       await axiosSecure.patch(
-        `${import.meta.env.VITE_API_URL}/tuitions/${tuitionData._id}`,
+        `${import.meta.env.VITE_API_URL}/tutions/${tutionData._id}`,
         data
       );
 
-      toast.success("Tuition updated successfully!");
+      toast.success("tution updated successfully!");
       onClose();
       if (onUpdate) {
         onUpdate();
       }
     } catch (error) {
-      console.error("Error updating tuition:", error);
-      toast.error("Failed to update tuition. Please try again.");
+      console.error("Error updating tution:", error);
+      toast.error("Failed to update tution. Please try again.");
     }
   };
 
@@ -50,7 +50,7 @@ const TuitionEdit = ({ isOpen, onClose, tuitionData, onUpdate }) => {
         {/* Modal Header */}
         <div className="flex items-center justify-between mb-6">
           <h3 className="text-2xl font-bold  bg-clip-text text-transparent">
-            Edit Tuition Request
+            Edit tution Request
           </h3>
           <button onClick={onClose} className="btn btn-sm btn-circle btn-ghost">
             ✕
@@ -99,11 +99,11 @@ const TuitionEdit = ({ isOpen, onClose, tuitionData, onUpdate }) => {
             </div>
           </div>
 
-          {/* Tuition Details Section */}
+          {/* tution Details Section */}
           <div className="space-y-4">
             <div className="flex items-center gap-2">
               <div className="w-1 h-6 bg-secondary rounded-full"></div>
-              <h4 className="text-lg font-bold">Tuition Details</h4>
+              <h4 className="text-lg font-bold">tution Details</h4>
             </div>
 
             <div className="bg-gradient-to-br from-secondary/5 to-accent/5 p-4 rounded-xl border border-secondary/10">
@@ -226,4 +226,4 @@ const TuitionEdit = ({ isOpen, onClose, tuitionData, onUpdate }) => {
   );
 };
 
-export default TuitionEdit;
+export default tutionEdit;

@@ -16,15 +16,15 @@ import {
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Spinner from "../Shared/Spinner";
 
-const AdminViewTuitionDetails = ({ isOpen, onClose, tuitionId }) => {
+const AdminViewtutionDetails = ({ isOpen, onClose, tutionId }) => {
   const axiosSecure = useAxiosSecure();
 
-  const { data: tuition, isLoading } = useQuery({
-    queryKey: ["tuitionDetailsAdmin", tuitionId],
-    enabled: !!tuitionId && isOpen,
+  const { data: tution, isLoading } = useQuery({
+    queryKey: ["tutionDetailsAdmin", tutionId],
+    enabled: !!tutionId && isOpen,
     queryFn: async () => {
       const res = await axiosSecure.get(
-        `${import.meta.env.VITE_API_URL}/tuitions-details/${tuitionId}`
+        `${import.meta.env.VITE_API_URL}/tutions-details/${tutionId}`
       );
       return res.data;
     },
@@ -84,7 +84,7 @@ const AdminViewTuitionDetails = ({ isOpen, onClose, tuitionId }) => {
               backgroundClip: "text",
             }}
           >
-            Tuition Details
+            tution Details
           </h3>
           <button
             onClick={onClose}
@@ -95,14 +95,10 @@ const AdminViewTuitionDetails = ({ isOpen, onClose, tuitionId }) => {
         </div>
 
         {/* Loading State */}
-        {isLoading && (
-         
-            <Spinner />
-          
-        )}
+        {isLoading && <Spinner />}
 
         {/* Content */}
-        {tuition && !isLoading && (
+        {tution && !isLoading && (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Student Information Card */}
             <div className="lg:col-span-1">
@@ -133,26 +129,23 @@ const AdminViewTuitionDetails = ({ isOpen, onClose, tuitionId }) => {
                       className="mask mask-squircle h-24 w-24 ring-4 mx-auto"
                       style={{ borderColor: "var(--color-primary)" }}
                     >
-                      <img
-                        src={tuition.studentPhoto}
-                        alt={tuition.studentName}
-                      />
+                      <img src={tution.studentPhoto} alt={tution.studentName} />
                     </div>
                   </div>
                   <h3
                     className="text-xl font-bold mt-3"
                     style={{ color: "var(--color-text-dark)" }}
                   >
-                    {tuition.studentName}
+                    {tution.studentName}
                   </h3>
                   <div className="flex justify-center mt-2">
                     <span
                       className={`badge gap-1 ${
-                        getStatusInfo(tuition.status).color
+                        getStatusInfo(tution.status).color
                       }`}
                     >
-                      {getStatusInfo(tuition.status).icon}
-                      {tuition.status || "pending"}
+                      {getStatusInfo(tution.status).icon}
+                      {tution.status || "pending"}
                     </span>
                   </div>
                 </div>
@@ -177,12 +170,12 @@ const AdminViewTuitionDetails = ({ isOpen, onClose, tuitionId }) => {
                         className="font-semibold text-sm"
                         style={{ color: "var(--color-text-dark)" }}
                       >
-                        {tuition.studentEmail}
+                        {tution.studentEmail}
                       </p>
                     </div>
                   </div>
 
-                  {tuition.studentPhone && (
+                  {tution.studentPhone && (
                     <div
                       className="flex items-center gap-3 p-3 rounded-lg"
                       style={{ backgroundColor: "var(--color-bg-soft)" }}
@@ -202,7 +195,7 @@ const AdminViewTuitionDetails = ({ isOpen, onClose, tuitionId }) => {
                           className="font-semibold text-sm"
                           style={{ color: "var(--color-text-dark)" }}
                         >
-                          {tuition.studentPhone}
+                          {tution.studentPhone}
                         </p>
                       </div>
                     </div>
@@ -227,7 +220,7 @@ const AdminViewTuitionDetails = ({ isOpen, onClose, tuitionId }) => {
                         className="font-semibold text-sm"
                         style={{ color: "var(--color-text-dark)" }}
                       >
-                        {formatDate(tuition.createdAt)}
+                        {formatDate(tution.createdAt)}
                       </p>
                     </div>
                   </div>
@@ -235,7 +228,7 @@ const AdminViewTuitionDetails = ({ isOpen, onClose, tuitionId }) => {
               </div>
             </div>
 
-            {/* Tuition Details Card */}
+            {/* tution Details Card */}
             <div className="lg:col-span-2">
               <div
                 className="rounded-xl shadow-lg p-6 border"
@@ -253,7 +246,7 @@ const AdminViewTuitionDetails = ({ isOpen, onClose, tuitionId }) => {
                     className="text-lg font-bold"
                     style={{ color: "var(--color-text-dark)" }}
                   >
-                    Tuition Requirements
+                    tution Requirements
                   </h4>
                 </div>
 
@@ -280,7 +273,7 @@ const AdminViewTuitionDetails = ({ isOpen, onClose, tuitionId }) => {
                       className="text-xl font-bold"
                       style={{ color: "var(--color-text-dark)" }}
                     >
-                      {tuition.subject}
+                      {tution.subject}
                     </p>
                   </div>
 
@@ -301,7 +294,7 @@ const AdminViewTuitionDetails = ({ isOpen, onClose, tuitionId }) => {
                       className="text-xl font-bold"
                       style={{ color: "var(--color-text-dark)" }}
                     >
-                      {tuition.class}
+                      {tution.class}
                     </p>
                   </div>
 
@@ -326,7 +319,7 @@ const AdminViewTuitionDetails = ({ isOpen, onClose, tuitionId }) => {
                       className="text-lg font-semibold"
                       style={{ color: "var(--color-text-dark)" }}
                     >
-                      {tuition.location}
+                      {tution.location}
                     </p>
                   </div>
 
@@ -351,7 +344,7 @@ const AdminViewTuitionDetails = ({ isOpen, onClose, tuitionId }) => {
                       className="text-2xl font-bold"
                       style={{ color: "var(--color-primary)" }}
                     >
-                      ৳{tuition.budget}
+                      ৳{tution.budget}
                       <span
                         className="text-sm font-normal ml-1"
                         style={{ color: "var(--color-text-muted)" }}
@@ -385,4 +378,4 @@ const AdminViewTuitionDetails = ({ isOpen, onClose, tuitionId }) => {
   );
 };
 
-export default AdminViewTuitionDetails;
+export default AdminViewtutionDetails;
